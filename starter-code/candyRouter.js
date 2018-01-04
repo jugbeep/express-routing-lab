@@ -37,26 +37,35 @@ router.get('/:id', function(req, res) {
 	var id = req.params.id;
 	res.send(candies[id-1]);
 });
-//////////////////////////////////////////////
-// router.post('/', function(req, res) {
-// 	console.log('post req made');
-// 	let candyCane = {'id': 5,'name': 'Candy Cane',
-// 					 'color': 'red & white'};
-// 	res.json(candyCane);
-// 	candies.push(candyCane);
-// });
 
-//////////////////////////////////////////////
-// router.post('/', function(req, res) {
-// 		let newCandy = {
-// 			name: req.body.name,
-// 			id: req.body.id,
-// 			color: req.body.color
-// 		};
+router.post('/', function(req, res) {
+		let newCandy = {
+			name: req.body.name,
+			id: req.body.id,
+			color: req.body.color
+		};
 
-// 		res.send(newCandy);
-// 		newCandy.push(candies);
-// });
+		candies.push(newCandy);
+		res.redirect('/candies');
+});
+
+router.put('/:id', function(req, res) {
+	let changedCandy = {
+			id: req.body.id,
+			name: req.body.name,
+			color: req.body.color
+		};
+	let id = req.params.id;
+	console.log(id);
+	candies.splice(id-1, 1, changedCandy);
+	res.redirect('/candies');
+});
+
+router.delete('/:id', function(req, res) {
+	let deleted = req.params.id;
+	candies.pop(deleted);
+	res.redirect('/candies');
+})
 
 
 

@@ -14,6 +14,6 @@ app.use(bodyParser.json());
 //through our candyRouter?
 //Hint: you need app.use
 
-app.use('/candies', router);
+app.use('/candies', candyRouter);
 
 app.listen(3000);
